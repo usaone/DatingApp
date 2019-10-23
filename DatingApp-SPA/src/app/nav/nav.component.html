@@ -3,16 +3,32 @@
   
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <a class="nav-link" href="#">Results</a>
+            <a class="nav-link" href="#">Result Matches</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#">Lists</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link " href="#">Warnings</a>
+            <a class="nav-link " href="#">Warning Messages</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link " (click)="logout()">Logout</a>
         </li>
     </ul>
-    <form #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
+
+    <div *ngIf="loggedIn()" class="dropdown">
+        <a class="dropdown-toggle text-light">
+          Welcome User
+        </a>
+      
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit Profile</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i>Logout</a>
+        </div>
+    </div>
+
+    <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
             <input class="form-control mr-sm-2" type="text" name="username" 
                 placeholder="Username" required [(ngModel)]="model.username">
             <input class="form-control mr-sm-2" type="password" name="password" 
